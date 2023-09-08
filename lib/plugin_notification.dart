@@ -67,6 +67,12 @@ class MyPluginNotification {
       var initializationSettings = InitializationSettings(
           android: initializationSettingsAndroid,
           iOS: initializationSettingsIOS);
+      if (Platform.isAndroid) {
+        await _flutterLocalNotificationsPlugin
+            .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin>()!
+            .requestPermission();
+      }
       _flutterLocalNotificationsPlugin.initialize(initializationSettings,
           onDidReceiveNotificationResponse: (NotificationResponse? data) async {
         onOpenLocalMessage(data?.payload ?? '');
