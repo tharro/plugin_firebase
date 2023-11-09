@@ -34,7 +34,7 @@ void initState() {
             // Trigger when the user clicks FCM notification
         },
         onRegisterFCM: (Map<String, dynamic> data) {
-        // Call register FCM token to your server
+            // Call register FCM token to your server
         },
         iconNotification: 'icon_notification',
         chanelId: 'chanel',
