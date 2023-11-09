@@ -64,7 +64,7 @@ void main() {
 }
 ```
 
-### Config deeplink
+### Handle deeplink
 
 ```
 import 'package:plugin_firebase/index.dart';
