@@ -131,10 +131,10 @@ class MyPluginNotification {
     String? token = await _messaging.getToken();
     String meId = await MyPluginFirebase.getMeIdDevice();
     Map<String, dynamic> body = {
-      "type": "M",
-      "device": Platform.isAndroid ? "A" : "I",
+      "type": "M", // M: Mobile, P: Portal
+      "device": Platform.isAndroid ? "A" : "I", // A: Android, I: iOS
       "meid": meId,
-      "token": token!,
+      "token": token,
     };
     return body;
   }

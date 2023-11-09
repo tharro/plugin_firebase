@@ -1,15 +1,83 @@
 # plugin_firebase
 
-A new Flutter plugin project.
+Plugin helps request, show and handle the notification on Android/iOS via FCM.
 
-## Getting Started
+## Getting started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+This will add a line like this to your package's pubspec.yaml (and run an implicit flutter pub get):
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+dependencies:
+  git:
+      url: https://github.com/tharro/plugin_firebase
+      ref: ref_id
+```
 
+## How to use
+
+### Config notification
+
+```
+import 'package:plugin_firebase/index.dart';
+
+@override
+void initState() {
+    MyPluginNotification.settingNotification(
+        colorNotification: Colors.red,
+        onMessage: (RemoteMessage remoteMessage) {
+            // Trigger when receive notification
+        },
+        onOpenLocalMessage: (String message) {
+            // Trigger when the user clicks local notification
+        },
+        onOpenFCMMessage: (RemoteMessage remote) {
+            // Trigger when the user clicks FCM notification
+        },
+        onRegisterFCM: (Map<String, dynamic> data) {
+        // Call register FCM token to your server
+        },
+        iconNotification: 'icon_notification',
+        chanelId: 'chanel',
+        chanelName: 'app_channel',
+        channelDescription: 'chanel description',
+        onShowLocalNotification: (RemoteMessage message) => true,
+    );
+}
+
+@override
+void dispose() {
+    MyPluginNotification.dispose();
+    super.dispose();
+}
+
+```
+
+### Config crashlytícs
+
+```
+import 'package:plugin_firebase/index.dart';
+
+void main() {
+    MyPluginNotification.setupCrashlytics(main: () async {
+        ...
+    })
+}
+```
+
+### Config deeplink
+
+```
+import 'package:plugin_firebase/index.dart';
+
+@override
+void initState() {
+    MyPluginDeepLinkWithFirebase.initDynamicLinks(
+        handleDynamicLink: (uri) {
+            // Handle deeplink
+        },
+        onError: (error) {
+            // Handle error
+        }
+    )
+}
+```
