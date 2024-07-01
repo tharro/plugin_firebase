@@ -68,10 +68,8 @@ class MyPluginNotification {
           android: initializationSettingsAndroid,
           iOS: initializationSettingsIOS);
       if (Platform.isAndroid) {
-        await _flutterLocalNotificationsPlugin
-            .resolvePlatformSpecificImplementation<
-                AndroidFlutterLocalNotificationsPlugin>()!
-            .requestPermission();
+        await _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+         AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
       }
       _flutterLocalNotificationsPlugin.initialize(initializationSettings,
           onDidReceiveNotificationResponse: (NotificationResponse? data) async {
